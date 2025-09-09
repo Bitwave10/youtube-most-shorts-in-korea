@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>한국 인기 쇼츠 추천기</title>
+    <link rel="stylesheet" href="css/style.css?v=20241220-001">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="title">🔥 한국 인기 쇼츠</h1>
+            <p class="subtitle">오늘 가장 많이 시청된 Shorts 영상</p>
+            <div class="api-info" style="background: rgba(46, 204, 113, 0.1); padding: 20px; border-radius: 15px; margin: 20px 0; border: 1px solid rgba(46, 204, 113, 0.3);">
+                <p style="margin: 0; font-size: 1rem; color: #2c3e50; font-weight: 500;">
+                    <strong>🎉 실시간 데이터 로딩 중...</strong> 최신 인기 쇼츠를 불러오고 있습니다
+                </p>
+            </div>
+            <div class="button-group" style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                <button id="refreshBtn" class="refresh-btn">
+                    <span class="refresh-icon">🔄</span>
+                    새로고침
+                </button>
+            </div>
+        </header>
+
+        <main class="main">
+            <div id="loadingState" class="loading-state">
+                <div class="spinner"></div>
+                <p style="font-size: 1.2rem; font-weight: 500;">실시간 인기 쇼츠를 불러오는 중...</p>
+                <p style="font-size: 1rem; color: #7f8c8d; margin-top: 15px;">잠시만 기다려주세요</p>
+            </div>
+
+            <div id="errorState" class="error-state" style="display: none;">
+                <div class="error-icon">⚠️</div>
+                <h3>오류가 발생했습니다</h3>
+                <p id="errorMessage">데이터를 불러올 수 없습니다.</p>
+                <button id="retryBtn" class="retry-btn">다시 시도</button>
+            </div>
+
+            <div id="successState" class="success-state" style="display: none; text-align: center; padding: 20px; background: rgba(46, 204, 113, 0.1); border-radius: 15px; margin-bottom: 20px; border: 2px solid rgba(46, 204, 113, 0.3);">
+                <div style="font-size: 2rem; margin-bottom: 10px;">🎉</div>
+                <h3 style="color: #27ae60; margin-bottom: 10px;">성공적으로 로드되었습니다!</h3>
+                <p id="successMessage" style="color: #7f8c8d;">인기 쇼츠를 성공적으로 불러왔습니다.</p>
+            </div>
+
+            <div id="shortsGrid" class="shorts-grid" style="display: none;">
+                <!-- 쇼츠 카드들이 여기에 동적으로 생성됩니다 -->
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>YouTube Data API v3를 활용한 한국 인기 쇼츠 추천기</p>
+            <p class="last-updated">마지막 업데이트: <span id="lastUpdated">-</span></p>
+            <div id="debugInfo" class="debug-info" style="display: none; margin-top: 10px; font-size: 0.8rem; color: #95a5a6;">
+                <p>디버그 정보: <span id="debugText">-</span></p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- 쇼츠 모달 -->
+    <div id="shortsModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">쇼츠 재생</h3>
+                <button id="closeModal" class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="playerContainer" class="player-container">
+                    <!-- YouTube 임베드 플레이어가 여기에 표시됩니다 -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="config.js?v=20241220-001"></script>
+    <script src="js/utils.js?v=20241220-001"></script>
+    <script src="js/api.js?v=20241220-001"></script>
+    <script src="js/ui.js?v=20241220-001"></script>
+    <script src="js/app.js?v=20241220-001"></script>
+</body>
+</html>
